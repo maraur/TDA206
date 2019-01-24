@@ -1,50 +1,31 @@
 from cvxopt.modeling import op, variable
+from numpy import array
 
-x1 = variable()
-x2 = variable()
-x3 = variable()
-x4 = variable()
-x5 = variable()
-x6 = variable()
-x7 = variable()
-x8 = variable()
-x9 = variable()
-x10 = variable()
-x11 = variable()
-x12 = variable()
+x = variable(12)
 
-c1 = (x1 + x4 + x7 + x10 <= 35)
-c2 = (x2 + x5 + x8 + x11 <= 40)
-c3 = (x3 + x6 + x9 + x12 <= 50)
-c4 = (x1 + x2 + x3 == 20)
-c5 = (x4 + x5 + x6 == 30)
-c6 = (x7 + x8 + x9 == 30)
-c7 = (x10 + x11 + x12 == 45)
+c1 = (x[0] + x[3] + x[6] + x[9] <= 35)
+c2 = (x[1] + x[4] + x[7] + x[10] <= 40)
+c3 = (x[2] + x[5] + x[8] + x[11] <= 50)
+c4 = (x[0] + x[1] + x[2] == 20)
+c5 = (x[3] + x[4] + x[5] == 30)
+c6 = (x[6] + x[7] + x[8] == 30)
+c7 = (x[9] + x[10] + x[11] == 45)
 
-cx1 = (x1 >= 0)
-cx2 = (x2 >= 0)
-cx3 = (x3 >= 0)
-cx4 = (x4 >= 0)
-cx5 = (x5 >= 0)
-cx6 = (x6 >= 0)
-cx7 = (x7 >= 0)
-cx8 = (x8 >= 0)
-cx9 = (x9 >= 0)
-cx10 = (x10 >= 0)
-cx11 = (x11 >= 0)
-cx12 = (x12 >= 0)
+cx = (x >= 0)
 
-lp = op(6*x1 + 9*x2 + 12*x3 + 9*x4 + 5*x5 + 7*x6 + 10*x7 + 16*x8 + 13*x9 + 8*x10 + 14*x11 + 9*x12,
-        [c1, c2, c3, c4, c5, c6, c7, cx1, cx2, cx3, cx4, cx5, cx6, cx7, cx8, cx9, cx10, cx11, cx12])
-lp.solve('dense',['glpk'])
+lp = op(6*x[0] + 9*x[1] + 12*x[2] + 9*x[3] + 5*x[4] + 7*x[5] + 10*x[6]
+               + 16*x[7] + 13*x[8] + 8*x[9] + 14*x[10] + 9*x[11],
+        [c1, c2, c3, c4, c5, c6, c7, cx])
+lp.solve()
 lp.status
 
-A = [[round(x1.value[0], 5), round(x4.value[0], 5), round(x7.value[0], 5), round(x10.value[0], 5)],
-     [round(x2.value[0], 5), round(x5.value[0], 5), round(x8.value[0], 5), round(x11.value[0], 5)],
-     [round(x3.value[0], 5), round(x6.value[0], 5), round(x9.value[0], 5), round(x12.value[0], 5)]
-     ]
-print(A[0])
-print(A[1])
-print(A[2])
+xn = array(x.value)
+xr = xn.round(5).T
+print([xr[0][0], xr[0][3], xr[0][6], xr[0][9]])
+print([xr[0][1], xr[0][4], xr[0][7], xr[0][10]])
+print([xr[0][2], xr[0][5], xr[0][8], xr[0][11]])
 print("Optimal Solution is:")
 print(round(lp.objective.value()[0], 4))
+print("Rounded Solution is:")
+print(6*xr[0][0] + 9*xr[0][1] + 12*xr[0][2] + 9*xr[0][3] + 5*xr[0][4] + 7*xr[0][5] + 10*xr[0][6]
+                 + 16*xr[0][7] + 13*xr[0][8] + 8*xr[0][9] + 14*xr[0][10] + 9*xr[0][11])

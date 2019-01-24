@@ -1,21 +1,15 @@
 from cvxopt.modeling import op, variable
 
-x1 = variable()
-x2 = variable()
-x3 = variable()
-x4 = variable()
-x5 = variable()
+x = variable(5)
 
-c1 = (2*x1 + 2*x2 - 4*x3 + 4*x4 + 8*x5 <= 6)
-c2 = (2*x1 + 1*x2 - 2*x3 - 1*x4 - 3*x5 >= -1)
-c3 = (5*x1 - 2*x2 + 4*x3 + 4*x4 + 2*x5 == 5)
-c4 = (2*x1 - 2*x2 + 5*x3 + 3*x4 + 1*x5 <= 4)
-c5 = (x1 >= 0)
-c6 = (x2 >= 0)
-c7 = (x3 >= 0)
-c8 = (x4 >= 0)
-c9 = (x5 >= 0)
-lp = op(-(4*x1 - 2*x2 + 5*x3 + 6*x4 + 7*x5), [c1, c2, c3, c4, c5, c6, c7, c8, c9])
+c1 = (2*x[0] + 2*x[1] - 4*x[2] + 4*x[3] + 8*x[4] <= 6)
+c2 = (2*x[0] + 1*x[1] - 2*x[2] - 1*x[3] - 3*x[4] >= -1)
+c3 = (5*x[0] - 2*x[1] + 4*x[2] + 4*x[3] + 2*x[4] == 5)
+c4 = (2*x[0] - 2*x[1] + 5*x[2] + 3*x[3] + 1*x[4] <= 4)
+cx = (x >= 0)
+
+lp = op(-(4*x[0] - 2*x[1] + 5*x[2] + 6*x[3] + 7*x[4]), [c1, c2, c3, c4, cx])
 lp.solve()
 lp.status
-print(lp.objective.value()*(-1))
+
+print(lp.objective.value()[0]*(-1))
