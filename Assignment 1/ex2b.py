@@ -21,6 +21,7 @@ lp.status
 
 xn = array(x.value)
 xr = xn.round(5).T
+
 print([xr[0][0], xr[0][3], xr[0][6], xr[0][9]])
 print([xr[0][1], xr[0][4], xr[0][7], xr[0][10]])
 print([xr[0][2], xr[0][5], xr[0][8], xr[0][11]])
