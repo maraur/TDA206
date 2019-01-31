@@ -1,0 +1,47 @@
+1. 
+
+Solution Vector:
+[ 6.27118663e-01  2.81355943e+00  1.54237292e+00 -5.24312604e-09  6.61016939e-01]
+Optimal Solution:
+9.22033894381426
+
+------------------------------------------------
+2. 
+
+a) in separate pdf-file
+
+b)
+When run without rounding, the program gives real values that are close to integers.
+My guess is that the library does not handle floating point errors very well.
+As trips cannot be anything but integers, the trips can't be almost full or just a small piece of a travel, 
+the scrips round the values to the closest integer.
+This does not affect the optimal solution, I tried putting both the real values and the rounded values into
+the same function and receive the same values.
+
+The values in the matrix correspond to the same places in the given diagram for the problem.
+
+Solution matrix:
+ [10.0, -0.0, 25.0,  0.0]
+ [10.0, 30.0,  0.0,  0.0]
+ [0.0,   0.0,  5.0, 45.0]
+
+Optimal Solution without rounding is:
+1020.0
+Optimal solution after rounding is:
+1020.0
+
+c)
+As with the previous exercise, I did not get real values however I once again rounded the values to integers.
+As previous I put the rounded values into the function to verify that did does not change the solution.
+After rounding I actually got a better value, although the difference is negligible. 
+Once again, I think floating-point errors are the culprit.
+
+Solution matrix:
+ [14.0, 0.0, 26.0,  0.0]
+ [6.0, 30.0,  0.0,  0.0]
+ [0.0,  0.0,  4.0, 45.0]
+
+Optimal Solution without rounding is:
+1005.0001
+Optimal solution after rounding is:
+1005.0

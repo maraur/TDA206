@@ -1,5 +1,4 @@
 from cvxopt.modeling import op, variable
-from numpy import array
 
 x = variable(5)
 
@@ -13,7 +12,4 @@ lp = op(-(4*x[0] - 2*x[1] + 5*x[2] + 6*x[3] + 7*x[4]), [c1, c2, c3, c4, cx])
 lp.solve()
 lp.status
 
-xn = array(x.value).T
-
-print(xn[0])
 print(lp.objective.value()[0]*(-1))
