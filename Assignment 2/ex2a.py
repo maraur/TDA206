@@ -16,7 +16,7 @@ G = cvxopt.matrix([[-1.0, -1.0, 0.0, 0.0, 0.0, 0.0], [-1.0, 0.0, -1.0, 0.0, 0.0,
                    [0.0, 0.0, 0.0, -1.0, 0.0, -1.0]])
 h = cvxopt.matrix([-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0])
 
-(stat, sol) = glpk.ilp(ct, G.T, h, A.T, b, set([0, 1]), set())
+(stat, sol) = glpk.ilp(ct, G.T, h, A.T, b, {0, 1}, {0,1})
 
 print(sol)
 print()
