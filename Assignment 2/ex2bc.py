@@ -27,6 +27,7 @@ print("x3 = ", x.value[2])
 print("x4 = ", x.value[3])
 print("x5 = ", x.value[4])
 print("x6 = ", x.value[5])
+print("Optimal")
 
 print("Rounded Solution is:")
 print("x1 = ", round(x.value[0]))
