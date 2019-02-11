@@ -26,12 +26,16 @@ for i in range(nmbrOfNodes):
 
 print("Number of constraints generated:", ccount)
 
+print("------------------------------------------------------------")
+print("Solution to integer linear programming")
+print("------------------------------------------------------------")
+
 G = matrix(G * -1)
 h = matrix(np.ones(ccount) * -1)
 
 (stat, sol) = glpk.ilp(c, G, h, I=vs, B=bs)
 npSum = np.array(sol)
-print(np.sum(npSum))
+print("Value of integer optimal solution:" ,np.sum(npSum))
 
 
 print("------------------------------------------------------------")
@@ -73,7 +77,7 @@ print(np.sum(correct_round(x)))
 
 
 print("------------------------------------------------------------")
-print("Solution to LP-relaxation")
+print("Solution by from given algorithm")
 print("------------------------------------------------------------")
 
 S = np.zeros(100)
@@ -87,4 +91,4 @@ for i in range(nmbrOfNodes):
                 else:
                     S[j+i] = 1
 
-print(np.sum(S))
+print("value of solution given by algorithm:" , np.sum(S))

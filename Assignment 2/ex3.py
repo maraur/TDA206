@@ -1,5 +1,9 @@
-from cvxopt import glpk, solvers, matrix
+from cvxopt import glpk, matrix
 import numpy as np
+
+print("------------------------------------------------------------")
+print("Solution to the ILP ")
+print("------------------------------------------------------------")
 
 w = [3, 1, 1, 2, 4, 1]
 
@@ -13,10 +17,11 @@ h = matrix([-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0])
 (stat, sol) = glpk.ilp(c, G.T, h, I={0, 1, 2, 3, 4, 5}, B={0, 1, 2, 3, 4, 5})
 
 print(sol)
+print("Value of integer optimal solution: ", c.T*sol)
 
 
 print("------------------------------------------------------------")
-print("Solution to LP-relaxation")
+print("Solution to LP relaxation")
 print("------------------------------------------------------------")
 
 GLP = G.T
@@ -35,4 +40,5 @@ GLP = matrix(GLP, tc='d')
 
 (stat1, solx, soly) = glpk.lp(c, GLP, hlp)
 print(solx)
+print("Value of optimal solution: ", c.T*solx)
 
